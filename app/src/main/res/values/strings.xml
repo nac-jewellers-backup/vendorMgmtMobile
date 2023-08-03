@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">NAC_Admin</string>
+    <string name="forgotpass"><u>Forgot Password</u></string>
+    <string name="title_activity_home_screen">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="resend"><u>Resend OTP</u></string>
 </resources>

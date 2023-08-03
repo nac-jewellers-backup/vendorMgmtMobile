@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.adminapp.nac_admin">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NAC_Admin">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login.Home_screen"></activity>
+        <activity android:name=".Forgotpassword.activity_changepass" />
+        <activity android:name=".Forgotpassword.activity_enterotp" />
+        <activity android:name=".Forgotpassword.Entermobileno_activity" />
+        <activity android:name=".Login.Login_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
