@@ -12,17 +12,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NAC_Admin">
-        <activity android:name=".Login.Home_screen"></activity>
-        <activity android:name=".Forgotpassword.activity_changepass" />
-        <activity android:name=".Forgotpassword.activity_enterotp" />
-        <activity android:name=".Forgotpassword.Entermobileno_activity" />
-        <activity android:name=".Login.Login_activity">
+        <activity android:name=".Login.Login_activity"></activity>
+        <activity android:name=".payment.activity_payment" />
+        <activity android:name=".order.activity_order" />
+        <activity android:name=".enquiry.activity_enquiry" />
+        <activity android:name=".vendor.activity_vendor" />
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Home.Home_screen" />
+        <activity android:name=".Forgotpassword.activity_changepass" />
+        <activity android:name=".Forgotpassword.activity_enterotp" />
+        <activity android:name=".Forgotpassword.Entermobileno_activity" />
     </application>
 
 </manifest>

@@ -2,18 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:id="@+id/enquiry"
+        android:title="Enquiry List"
+        android:icon="@drawable/enquiry_icon"
+
+        />
+    <item
+        android:id="@+id/admin"
+        android:title="Admin List"
+        android:icon="@drawable/admin_icon"
+       />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/vendor"
+        android:title="Vendor List"
+        android:icon="@drawable/admin_icon"
+        />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/order"
+        android:title="Order List"
+        android:icon="@drawable/order_icon"
+        />
+
+    <item
+        android:id="@+id/Payment"
+        android:title="Payment List"
+        android:icon="@drawable/payment_icon"
+       />
 
 </menu>

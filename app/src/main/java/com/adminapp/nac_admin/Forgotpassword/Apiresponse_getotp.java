@@ -4,15 +4,14 @@ public class Apiresponse_getotp {
 
     private String status;
     private String message;
-    private String otp;
-    private String mobile_number;
+    private userdetails data;
 
-    public String getMobile_number() {
-        return mobile_number;
+    public userdetails getData() {
+        return data;
     }
 
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
+    public void setData(userdetails data) {
+        this.data = data;
     }
 
     public String getStatus() {
@@ -31,12 +30,5 @@ public class Apiresponse_getotp {
         this.message = message;
     }
 
-    public String getOtp() {
-        return otp;
-    }
-
-    public void setOtp(String otp) {
-        this.otp = otp;
-    }
 
 }

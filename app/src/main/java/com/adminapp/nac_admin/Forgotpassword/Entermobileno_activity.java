@@ -96,6 +96,7 @@ public class Entermobileno_activity extends AppCompatActivity {
                 APP_API api = retrofit.create(APP_API.class);
                 Apirequest_getotp user = new Apirequest_getotp();
                 user.setMobile_number(edt_mobileno.getText().toString());
+                user.setTableName("nac_cms_admin");
 
                 Call<Apiresponse_getotp> myCall = api.getotp(user);
 
@@ -108,14 +109,14 @@ public class Entermobileno_activity extends AppCompatActivity {
                        // editor = sharedPreferences.edit();
                       //  editor.putString("loginstatus","true");
 
-                        editor.putString("mobileno", response.body().getMobile_number());
+                        editor.putString("userid", response.body().getData().getId());
                        // editor.putString("usermail",edtemail.getText().toString().trim());
 
                         editor.commit();
                         //alertDialog.RounderCornerDialog(Login_Activity.this, "success", response.body().getMessage());
 
                                 Intent intent = new Intent(Entermobileno_activity.this, activity_enterotp.class);
-                                intent.putExtra("validateOTP",response.body().getOtp());
+                                intent.putExtra("validateOTP",response.body().getData().getOtp());
                                 finish();
                                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
 

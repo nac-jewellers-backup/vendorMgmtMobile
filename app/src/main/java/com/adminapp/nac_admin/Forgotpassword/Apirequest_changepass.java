@@ -2,15 +2,24 @@ package com.adminapp.nac_admin.Forgotpassword;
 
 public class Apirequest_changepass {
 
-    private String mobile_number;
+    private String id;
     private String password;
+    private String tableName;
 
-    public String getMobile_number() {
-        return mobile_number;
+    public String getId() {
+        return id;
     }
 
-    public void setMobile_number(String mobile_number) {
-        this.mobile_number = mobile_number;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTableName() {
+        return tableName;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
     public String getPassword() {

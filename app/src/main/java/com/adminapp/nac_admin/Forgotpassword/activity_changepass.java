@@ -40,7 +40,7 @@ public class activity_changepass extends AppCompatActivity {
     AlertDialog alertDialog;
     Networkconnectivity conn;
 
-    String mobileno;
+    String userid;
 
     SharedPreferences sharedPreferences = null;
     SharedPreferences.Editor editor;
@@ -57,9 +57,9 @@ public class activity_changepass extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("Appsettings",MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
-       mobileno= sharedPreferences.getString("mobileno",null);
+       userid= sharedPreferences.getString("userid",null);
 
-       Log.d("showmobile",mobileno);
+      // Log.d("showmobile",mobileno);
 
         edt_newpass=findViewById(R.id.enternewpassword);
         edt_confirmpass=findViewById(R.id.enterconfirmpassword);
@@ -104,8 +104,9 @@ public class activity_changepass extends AppCompatActivity {
 
                 APP_API api = retrofit.create(APP_API.class);
                 Apirequest_changepass user = new Apirequest_changepass();
-                user.setMobile_number(mobileno);
                 user.setPassword(edt_newpass.getText().toString());
+                user.setTableName("nac_cms_admin");
+                user.setId(userid);
 
                 Call<Apiresponse_changepass> myCall = api.changepass(user);
 

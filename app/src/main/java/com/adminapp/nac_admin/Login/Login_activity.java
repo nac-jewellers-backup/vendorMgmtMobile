@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.adminapp.nac_admin.Forgotpassword.Entermobileno_activity;
+import com.adminapp.nac_admin.Home.Home_screen;
 import com.adminapp.nac_admin.R;
 import com.adminapp.nac_admin.common.APP_API;
 import com.adminapp.nac_admin.common.AlertDialog;
@@ -107,6 +108,7 @@ public class Login_activity extends AppCompatActivity {
                 Apirequest_login user = new Apirequest_login();
                 user.setMobile_number(txt_mobileno.getText().toString());
                 user.setPassword(txtpassword.getText().toString());
+                user.setTableName("nac_cms_admin");
 
                 Call<Apiresponse_login> myCall = api.doLoginRequest(user);
 
@@ -128,12 +130,11 @@ public class Login_activity extends AppCompatActivity {
 
                            // alertDialog.RounderCornerDialog(Login_activity.this, "success", response.body().getMessage());
                         finish();
-                        Intent intent=new Intent(Login_activity.this,Home_screen.class);
+                        Intent intent=new Intent(Login_activity.this, Home_screen.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
 
-
-                            Log.d("test", response.body().getMessage());
+                            Log.d("userfound",response.body().getStatus());
 
                         }
                    /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure")){

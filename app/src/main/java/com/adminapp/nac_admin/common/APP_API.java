@@ -14,13 +14,15 @@ import retrofit2.http.POST;
 
 public interface APP_API {
 
-  //  @Headers("Content-Type: application/json")
+    @Headers("x-api-key:8DCiyiPd0f6ojQaYPwsH42IpPacBXf976Yt4TCIr")
     @POST("login")
     Call<Apiresponse_login> doLoginRequest(@Body Apirequest_login data);
 
-    @POST("otp")
+    @Headers("x-api-key:8DCiyiPd0f6ojQaYPwsH42IpPacBXf976Yt4TCIr")
+    @POST("verify")
     Call<Apiresponse_getotp> getotp(@Body Apirequest_getotp data);
 
-    @POST("forget_password")
+    @Headers("x-api-key:8DCiyiPd0f6ojQaYPwsH42IpPacBXf976Yt4TCIr")
+    @POST("reset_password")
     Call<Apiresponse_changepass> changepass(@Body Apirequest_changepass data);
 }
