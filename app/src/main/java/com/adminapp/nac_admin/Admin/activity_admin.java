@@ -52,6 +52,8 @@ public class activity_admin extends AppCompatActivity {
 
     RecyclerView.LayoutManager layoutManager;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +92,13 @@ public class activity_admin extends AppCompatActivity {
                         .build();
 
                 APP_API api = retrofit.create(APP_API.class);
-                Apiresquest_admin user = new Apiresquest_admin();
+                Apiresquest_admin requestdata = new Apiresquest_admin();
               //  user.setSession(getdata);
-                user.setName(name);
+                requestdata.getSession().getUser().setMobile_number("453454534");
+                requestdata.getSession().setToken("4346366363463634");
 
-                Call<Apiresponse_admin> myCall = api.getadmin(user);
+                Log.d("printreq",""+requestdata);
+                Call<Apiresponse_admin> myCall = api.getadmin(requestdata);
 
                 myCall.enqueue(new Callback<Apiresponse_admin>() {
                     @Override

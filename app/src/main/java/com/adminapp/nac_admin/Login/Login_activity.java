@@ -124,8 +124,12 @@ public class Login_activity extends AppCompatActivity {
                         //editor = sharedPreferences.edit();
                        // editor.putString("loginstatus","true");
 
-                            editor.putString("sessiondata", response.body().getSession().toString());
+                            /*editor.putString("sessiondata", response.body().getSession().toString());
                             editor.putString("name",response.body().getName());
+                            editor.commit();*/
+
+                            editor.putString("mobile", txt_mobileno.getText().toString());
+                            editor.putString("token",response.body().getSession().getToken());
                             editor.commit();
 
                             Intent intent=new Intent(Login_activity.this, Home_screen.class);
