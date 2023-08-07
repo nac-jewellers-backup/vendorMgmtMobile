@@ -136,8 +136,8 @@ public class Login_activity extends AppCompatActivity {
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
-                            Log.d("session",""+response.body().getSession());
-                            Log.d("name",response.body().getName());
+                            Log.d("session",txt_mobileno.getText().toString());
+                            Log.d("name",response.body().getSession().getToken());
 
                         }
                    /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure")){

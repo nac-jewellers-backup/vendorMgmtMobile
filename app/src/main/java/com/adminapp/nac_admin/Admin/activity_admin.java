@@ -48,11 +48,9 @@ public class activity_admin extends AppCompatActivity {
 
     ArrayList<Admin_list> array_admin=new ArrayList<>();
 
-    String session,name;
+    String mobile,token;
 
     RecyclerView.LayoutManager layoutManager;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,14 +64,13 @@ public class activity_admin extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("Appsettings",MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
-       // session=sharedPreferences.getString("sessiondata",null);
-        name=sharedPreferences.getString("name",null);
-        Log.d("getname",name);
+        mobile=sharedPreferences.getString("mobile",null);
+        token=sharedPreferences.getString("token",null);
+
+        Log.d("mobileno",mobile);
+        Log.d("token",token);
 
         recycler_admin=findViewById(R.id.recycler_admin);
-
-        sessiondata getdata=new sessiondata();
-        getdata.data();
 
         try {
             if (conn.isConnectingToInternet()) {
@@ -93,9 +90,8 @@ public class activity_admin extends AppCompatActivity {
 
                 APP_API api = retrofit.create(APP_API.class);
                 Apiresquest_admin requestdata = new Apiresquest_admin();
-              //  user.setSession(getdata);
-                requestdata.getSession().getUser().setMobile_number("453454534");
-                requestdata.getSession().setToken("4346366363463634");
+                requestdata.getSession().getUser().setMobile_number(mobile);
+                requestdata.getSession().setToken(token);
 
                 Log.d("printreq",""+requestdata);
                 Call<Apiresponse_admin> myCall = api.getadmin(requestdata);
@@ -175,22 +171,5 @@ public class activity_admin extends AppCompatActivity {
         progressdialog.dismiss();
     }
 
-    public class sessiondata {
-
-        SharedPreferences sharedPreferences = null;
-        SharedPreferences.Editor editor;
-
-        public void data(){
-
-            sharedPreferences=getSharedPreferences("Appsettings",MODE_PRIVATE);
-            editor=sharedPreferences.edit();
-
-            sharedPreferences.getString("sessiondata",null);
-
-            Log.d("data",sharedPreferences.getString("sessiondata",null));
-
-        }
-
-    }
 
 }
