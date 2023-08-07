@@ -52,6 +52,9 @@ public class Login_activity extends AppCompatActivity {
         alertDialog=new AlertDialog();
         conn=new Networkconnectivity(this);
 
+        sharedPreferences=getSharedPreferences("Appsettings",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+
         Initializeview();
 
         loginlay.setOnClickListener(new View.OnClickListener() {
@@ -121,20 +124,16 @@ public class Login_activity extends AppCompatActivity {
                         //editor = sharedPreferences.edit();
                        // editor.putString("loginstatus","true");
 
-                      //  editor.putString("mobileno", response.body().getResponse().getUser().getMobile_number());
+                            editor.putString("sessiondata", response.body().getSession().toString());
+                            editor.putString("name",response.body().getName());
+                            editor.commit();
 
-                       // Log.d("mobileno",response.body().getResponse().getUser().getMobile_number());
+                            Intent intent=new Intent(Login_activity.this, Home_screen.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
 
-                      //  editor.commit();
-                        //alertDialog.RounderCornerDialog(Login_Activity.this, "success", response.body().getMessage());*/
-
-                           // alertDialog.RounderCornerDialog(Login_activity.this, "success", response.body().getMessage());
-                        finish();
-                        Intent intent=new Intent(Login_activity.this, Home_screen.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
-
-                            Log.d("userfound",response.body().getStatus());
+                            Log.d("session",""+response.body().getSession());
+                            Log.d("name",response.body().getName());
 
                         }
                    /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure")){

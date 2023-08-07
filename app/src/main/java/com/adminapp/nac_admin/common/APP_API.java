@@ -1,5 +1,7 @@
 package com.adminapp.nac_admin.common;
 
+import com.adminapp.nac_admin.Admin.Apiresponse_admin;
+import com.adminapp.nac_admin.Admin.Apiresquest_admin;
 import com.adminapp.nac_admin.Forgotpassword.Apirequest_changepass;
 import com.adminapp.nac_admin.Forgotpassword.Apirequest_getotp;
 import com.adminapp.nac_admin.Forgotpassword.Apiresponse_changepass;
@@ -23,6 +25,10 @@ public interface APP_API {
     Call<Apiresponse_getotp> getotp(@Body Apirequest_getotp data);
 
     @Headers("x-api-key:8DCiyiPd0f6ojQaYPwsH42IpPacBXf976Yt4TCIr")
-    @POST("reset_password")
+    @POST("forgot_password")
     Call<Apiresponse_changepass> changepass(@Body Apirequest_changepass data);
+
+    @Headers("x-api-key:8DCiyiPd0f6ojQaYPwsH42IpPacBXf976Yt4TCIr")
+    @POST("list_admin")
+    Call<Apiresponse_admin> getadmin(@Body Apiresquest_admin data);
 }

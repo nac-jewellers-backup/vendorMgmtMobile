@@ -57,7 +57,7 @@ public class activity_changepass extends AppCompatActivity {
         sharedPreferences=getSharedPreferences("Appsettings",MODE_PRIVATE);
         editor=sharedPreferences.edit();
 
-       userid= sharedPreferences.getString("userid",null);
+        userid= sharedPreferences.getString("userid",null);
 
       // Log.d("showmobile",mobileno);
 

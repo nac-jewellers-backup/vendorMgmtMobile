@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NAC_Admin">
-        <activity android:name=".Login.Login_activity"></activity>
+        <activity android:name=".Admin.activity_admin"></activity>
+        <activity android:name=".Login.Login_activity" />
         <activity android:name=".payment.activity_payment" />
         <activity android:name=".order.activity_order" />
         <activity android:name=".enquiry.activity_enquiry" />
