@@ -1,5 +1,7 @@
 package com.adminapp.nac_admin.Admin;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.adminapp.nac_admin.Home.Home_screen;
@@ -57,6 +60,10 @@ public class activity_admin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
 
+        getSupportActionBar().setTitle("Admin List");
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         progressdialog=new ProgressDialog(activity_admin.this);
         alertDialog=new AlertDialog();
         conn=new Networkconnectivity(this);
@@ -99,8 +106,10 @@ public class activity_admin extends AppCompatActivity {
                 myCall.enqueue(new Callback<Apiresponse_admin>() {
                     @Override
                     public void onResponse(Call<Apiresponse_admin> call, Response<Apiresponse_admin> response) {
-
                         hideProgressDialog();
+
+                        Log.d("response1",response.body().getStatus());
+
                         if (response.body() != null && response.body().getStatus().equalsIgnoreCase("success")) {
 
                             Log.d("response",response.body().getStatus());
@@ -169,6 +178,20 @@ public class activity_admin extends AppCompatActivity {
 
         //progressDailaog.hide();
         progressdialog.dismiss();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                finish();
+
+                //Toast.makeText(this,"Back button pressed!",Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
 

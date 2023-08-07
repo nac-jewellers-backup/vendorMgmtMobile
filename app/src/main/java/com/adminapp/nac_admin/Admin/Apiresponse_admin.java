@@ -32,6 +32,4 @@ public class Apiresponse_admin {
         this.result = result;
     }
 
-
-
 }
