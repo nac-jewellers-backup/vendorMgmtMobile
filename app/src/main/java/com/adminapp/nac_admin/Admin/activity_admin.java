@@ -64,6 +64,8 @@ public class activity_admin extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        recycler_admin=findViewById(R.id.recycler_admin);
+
         progressdialog=new ProgressDialog(activity_admin.this);
         alertDialog=new AlertDialog();
         conn=new Networkconnectivity(this);
@@ -77,30 +79,38 @@ public class activity_admin extends AppCompatActivity {
         Log.d("mobileno",mobile);
         Log.d("token",token);
 
-        recycler_admin=findViewById(R.id.recycler_admin);
+
 
         try {
             if (conn.isConnectingToInternet()) {
                 showProgressDialog();
                 HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
                 logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                Log.d("level1","level1");
 
                 OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
                 httpClient.connectTimeout(60, TimeUnit.SECONDS);
                 httpClient.readTimeout(60, TimeUnit.SECONDS);
                 httpClient.addInterceptor(logging);
+                Log.d("level2","level2");
 
                 Retrofit retrofit = new Retrofit.Builder().baseUrl(Baseurl.baseurl)
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
+                Log.d("level3","level3");
+
                 APP_API api = retrofit.create(APP_API.class);
                 Apiresquest_admin requestdata = new Apiresquest_admin();
-                requestdata.getSession().getUser().setMobile_number(mobile);
-                requestdata.getSession().setToken(token);
+                usermob mob = new usermob();
+                mob.setMobile_number(mobile);
+                pass_sessiondata sess = new pass_sessiondata();
+                sess.setUser(mob);
+                sess.setToken(token);
+                requestdata.setSession(sess);
 
-                Log.d("printreq",""+requestdata);
+                Log.d("reqdata",""+requestdata.toString());
                 Call<Apiresponse_admin> myCall = api.getadmin(requestdata);
 
                 myCall.enqueue(new Callback<Apiresponse_admin>() {
