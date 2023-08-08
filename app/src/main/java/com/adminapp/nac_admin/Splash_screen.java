@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.adminapp.nac_admin.Home.Home_screen;
 import com.adminapp.nac_admin.Login.Login_activity;
 
 public class Splash_screen extends AppCompatActivity {
@@ -37,14 +38,25 @@ public class Splash_screen extends AppCompatActivity {
             @Override
             public void run() {
 
-              //  sessionmaintain();
-
-                finish();
-                Intent intent=new Intent(Splash_screen.this, Login_activity.class);
-                startActivity(intent);
+              checklogin_setup();
 
             }
         },splash_timeout);
 
+    }
+
+    private void checklogin_setup() {
+
+        signupflag = sharedpre.getString("loginstatus","false");
+
+        if(signupflag.equalsIgnoreCase("true"))
+        {
+            finish();
+            startActivity(new Intent(Splash_screen.this, Home_screen.class)); //HomeActivity2
+        }
+        else{
+            finish();
+            startActivity(new Intent(Splash_screen.this, Login_activity.class)); //Login_Activity
+        }
     }
 }

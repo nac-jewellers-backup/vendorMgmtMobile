@@ -80,7 +80,6 @@ public class activity_admin extends AppCompatActivity {
         Log.d("token",token);
 
 
-
         try {
             if (conn.isConnectingToInternet()) {
                 showProgressDialog();
@@ -103,11 +102,14 @@ public class activity_admin extends AppCompatActivity {
 
                 APP_API api = retrofit.create(APP_API.class);
                 Apiresquest_admin requestdata = new Apiresquest_admin();
+
                 usermob mob = new usermob();
                 mob.setMobile_number(mobile);
+
                 pass_sessiondata sess = new pass_sessiondata();
                 sess.setUser(mob);
                 sess.setToken(token);
+
                 requestdata.setSession(sess);
 
                 Log.d("reqdata",""+requestdata.toString());

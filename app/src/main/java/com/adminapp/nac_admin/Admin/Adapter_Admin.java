@@ -50,13 +50,12 @@ public class Adapter_Admin extends RecyclerView.Adapter<Adapter_Admin.ViewHolder
         return viewholder;
     }
 
-
     @Override
     public void onBindViewHolder(@NonNull Adapter_Admin.ViewHolder holder, int position) {
 
-        holder.txt_name.setText(array_admin.get(position).getName());
-        holder.txt_Email.setText(array_admin.get(position).getEmail());
-        holder.txt_mobile.setText(array_admin.get(position).getMobile());
+        holder.txt_name.setText("Name"+" : "+array_admin.get(position).getName());
+        holder.txt_Email.setText("Email"+" : "+array_admin.get(position).getEmail());
+        holder.txt_mobile.setText("Mobile"+" : "+array_admin.get(position).getMobile());
 
     }
 

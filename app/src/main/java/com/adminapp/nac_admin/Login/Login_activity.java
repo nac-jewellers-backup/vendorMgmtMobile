@@ -121,28 +121,18 @@ public class Login_activity extends AppCompatActivity {
 
                         hideProgressDialog();
                         if (response.body() != null && response.body().getStatus().equalsIgnoreCase("success")) {
-                        //editor = sharedPreferences.edit();
-                       // editor.putString("loginstatus","true");
 
-                            /*editor.putString("sessiondata", response.body().getSession().toString());
-                            editor.putString("name",response.body().getName());
-                            editor.commit();*/
-
-                            editor.putString("mobile", txt_mobileno.getText().toString());
+                            editor.putString("mobile",response.body().getSession().getUser().getMobile_number());
                             editor.putString("token",response.body().getSession().getToken());
+                            editor.putString("loginstatus","true");
                             editor.commit();
 
                             Intent intent=new Intent(Login_activity.this, Home_screen.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
 
-                            Log.d("session",txt_mobileno.getText().toString());
-                            Log.d("name",response.body().getSession().getToken());
-
                         }
-                   /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure")){
-                       // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", response.body().getMessage());
-                    }*/
+
                         else {
                             // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", response.body().getMessage());
                         }
