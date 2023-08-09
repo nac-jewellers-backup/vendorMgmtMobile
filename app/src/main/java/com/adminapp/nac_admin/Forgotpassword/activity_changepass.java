@@ -22,6 +22,8 @@ import com.adminapp.nac_admin.common.Networkconnectivity;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -71,6 +73,18 @@ public class activity_changepass extends AppCompatActivity {
 
                 if(isValid(edt_newpass) && isValid(edt_confirmpass)){
 
+                   if(!isValidPassword(edt_newpass.getText().toString()) && !isValidPassword(edt_newpass.getText().toString())){
+
+                       alertDialog.RounderCornerDialog(activity_changepass.this, "Alert", "Invalid password, password must contains atleast one uppercase, special character and numeric");
+
+                    }
+
+                   if(edt_newpass.getText().toString().length()<8 && edt_newpass.getText().toString().length()>8){
+
+                       alertDialog.RounderCornerDialog(activity_changepass.this, "Alert", "Password length should be 8 characters");
+
+                   }
+
                     changepass_process();
 
                 }
@@ -115,14 +129,6 @@ public class activity_changepass extends AppCompatActivity {
                     public void onResponse(Call<Apiresponse_changepass> call, Response<Apiresponse_changepass> response) {
                         hideProgressDialog();
                         if (response.body() != null && response.body().getStatus().equalsIgnoreCase("success") && response.body().getMessage().equalsIgnoreCase("Password changed successfully")) {
-                       /* editor = sharedPreferences.edit();
-                        editor.putString("loginstatus","true");
-
-                        editor.putString("userid", response.body().getUserid());
-                        editor.putString("usermail",edtemail.getText().toString().trim());
-
-                        editor.commit();
-                        //alertDialog.RounderCornerDialog(Login_Activity.this, "success", response.body().getMessage());*/
 
                             if(edt_newpass.getText().toString().equalsIgnoreCase(edt_confirmpass.getText().toString())){
 
@@ -131,19 +137,14 @@ public class activity_changepass extends AppCompatActivity {
                             }
 
                             else {
+
                                 RounderCornerDialog(activity_changepass.this, "Sorry", "Password doesn't match");
 
                             }
 
                         }
-                   /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure")){
-                       // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", response.body().getMessage());
-                    }*/
-                        else {
-                            // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", response.body().getMessage());
-                        }
-                    }
 
+                    }
 
                     @Override
                     public void onFailure(Call<Apiresponse_changepass> call, Throwable t) {
@@ -257,6 +258,18 @@ public class activity_changepass extends AppCompatActivity {
             return true;
         else
             return false;
+    }
+
+
+    public static boolean isValidPassword(final String password) {
+
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern = Pattern.compile(PASSWORD_PATTERN);
+        matcher = pattern.matcher(password);
+
+        return matcher.matches();
     }
 
 }

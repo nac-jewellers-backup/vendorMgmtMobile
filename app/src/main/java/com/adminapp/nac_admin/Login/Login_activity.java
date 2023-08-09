@@ -6,9 +6,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,6 +49,10 @@ public class Login_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+
         setContentView(R.layout.activity_login);
 
         progressdialog=new ProgressDialog(Login_activity.this);
@@ -99,6 +106,9 @@ public class Login_activity extends AppCompatActivity {
 
                 OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
+                httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC).setLevel
+                        (HttpLoggingInterceptor.Level.BODY).setLevel(HttpLoggingInterceptor.Level.HEADERS));
+
                 httpClient.connectTimeout(60, TimeUnit.SECONDS);
                 httpClient.readTimeout(60, TimeUnit.SECONDS);
                 httpClient.addInterceptor(logging);
@@ -130,19 +140,39 @@ public class Login_activity extends AppCompatActivity {
                             Intent intent=new Intent(Login_activity.this, Home_screen.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
-
                         }
+
+                       /* else if(response.body()!=null && response.body().getStatus().equalsIgnoreCase("failure") && response.body().getMessage().equalsIgnoreCase("Invalid credentials")){
+                            alertDialog.RounderCornerDialog(Login_activity.this, "Sorry", response.body().getMessage());
+
+                            Log.d("failurestatus",response.body().getMessage());
+                        }*/
+                       /* else {
+
+                            alertDialog.RounderCornerDialog(Login_activity.this, "Alert", "Invalid credentials");
+                        }*/
 
                         else {
-                            // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", response.body().getMessage());
+
+                            switch (response.code()){
+                                case 403:
+                                    if(response.body() != null && response.body().getStatus().equalsIgnoreCase("failure")) {
+                                        alertDialog.RounderCornerDialog(Login_activity.this, "Alert", response.body().getMessage());
+                                    }
+                                    break;
+
+                            }
+
                         }
                     }
-
 
                     @Override
                     public void onFailure(Call<Apiresponse_login> call, Throwable t) {
                         hideProgressDialog();
-                        // alertDialog.RounderCornerDialog(Login_Activity.this, "Sorry", t.getMessage());
+                       alertDialog.RounderCornerDialog(Login_activity.this, "Sorry", t.getMessage());
+                       // Toast.makeText(Login_activity.this,"Incorrect password",Toast.LENGTH_SHORT).show();
+
+                       Log.d("checklevel","level1");
                     }
                 });
 
@@ -161,6 +191,10 @@ public class Login_activity extends AppCompatActivity {
             hideProgressDialog();
             //alertDialog.RounderCornerDialog(Login_Activity.this, "Error", "Something went wrong");
             e.printStackTrace();
+            Toast.makeText(Login_activity.this,"Incorrect password",Toast.LENGTH_SHORT).show();
+
+            Log.d("checklevel2","level2");
+
         }
 
             }
@@ -179,6 +213,7 @@ public class Login_activity extends AppCompatActivity {
         {
             progressdialog.setIndeterminate(true);
             progressdialog.setMessage("Processing");
+            progressdialog.setIndeterminateDrawable(getDrawable(R.drawable.progress_icon));
             progressdialog.show();
         }
         catch (Exception ex)

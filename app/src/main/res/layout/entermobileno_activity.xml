@@ -11,7 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter Mobile Number"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        />
 
     <EditText
         android:id="@+id/entermobileno"
@@ -24,7 +26,8 @@
         android:layout_marginRight="10dp"
         android:inputType="number"
         android:maxLength="10"
-        android:paddingLeft="10dp"/>
+        android:paddingLeft="10dp"
+        />
 
     <TextView
         android:id="@+id/btn_sub"

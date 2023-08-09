@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/purple_500"/>  <!--#B97F7F-->
+    <solid android:color="@color/App_color"/>  <!--#B97F7F-->
     <stroke android:width="0dp"
-        android:color="@color/purple_500" />
+        android:color="@color/App_color" />
     <corners android:radius="10dp"/>
     <padding android:left="0dp"
         android:top="0dp"

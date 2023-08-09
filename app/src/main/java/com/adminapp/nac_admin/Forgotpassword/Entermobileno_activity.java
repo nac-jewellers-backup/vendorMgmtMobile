@@ -68,7 +68,7 @@ public class Entermobileno_activity extends AppCompatActivity {
 
                 else {
 
-                    alertDialog.RounderCornerDialog(Entermobileno_activity.this, "Alert", "Please fill out all the fields");
+                    alertDialog.RounderCornerDialog(Entermobileno_activity.this, "Alert", "Please fill out field");
                 }
 
             }
